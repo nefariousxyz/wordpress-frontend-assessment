@@ -1,0 +1,31 @@
+/*
+Theme Name: My Frontend/Backend Wordpress Assessment Theme
+Theme URI: https://trial.franzabiva.com/
+Author: Franz Abiva
+Description: Minimal WordPress theme for my fronten/backend assessment with Bootstrap 5 property grid and review slider.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: wp-frontend-assessment
+*/
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-brand span {
+    font-weight: 700;
+}
+
+.featured-heading {
+    letter-spacing: 0.08em;
+}
+
+.property-card img {
+    object-fit: cover;
+    height: 220px;
+}
+
+.review-card {
+    min-height: 220px;
+}
