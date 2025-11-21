@@ -11,21 +11,627 @@ Text Domain: wp-frontend-assessment
 
 body {
     font-family: 'Open Sans', sans-serif;
+    background-color: #f6f7fb;
+    color: #222;
 }
 
+/* ---------------- HEADER ---------------- */
+
+.site-header {
+    position: relative;
+    z-index: 1000;
+}
+
+/* ---------------- FOOTER ---------------- */
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make main content take all remaining space */
+main {
+    flex: 1 0 auto;
+}
+
+/* Footer stays at the bottom */
+.site-footer {
+    flex-shrink: 0;
+}
+
+/* Top blue info bar */
+.topbar {
+    background-color: #275c8b;
+    color: #f1f5f9;
+    padding: 0.4rem 0;
+    font-size: 0.8rem;
+}
+
+.topbar a {
+    color: #e5e7eb;
+    text-decoration: none;
+}
+
+.topbar a:hover {
+    color: #ffffff;
+}
+
+.topbar-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(241, 245, 249, 0.5);
+    font-size: 0.7rem;
+}
+
+/* Default dark bar under blue topbar – no overlap */
+.main-nav {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #111827; /* solid dark */
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+/* Mobile: keep solid bar even on home */
+@media (max-width: 991.98px) {
+    .home .main-nav {
+        position: static;
+        background: #111827;
+    }
+}
+
+.main-nav .navbar-brand {
+    color: #ffffff;
+}
+
+.main-nav .navbar-brand:hover {
+    color: #ffffff;
+}
+
+/* Colored circle logo mark */
+.brand-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d, #1dd1a1);
+    color: #111827;
+    font-size: 1.1rem;
+}
+
+/* Nav links styling */
+.navbar-dark .navbar-nav .nav-link {
+    color: #e5e7eb;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff;
+}
+
+/* Right-side icons (search + cart) */
+.navbar-icons .nav-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.6rem;
+}
+
+/* Navbar brand tweak (kept from original) */
 .navbar-brand span {
     font-weight: 700;
 }
 
-.featured-heading {
+/* ---------------- HERO SECTION ---------------- */
+
+.hero-section {
+    position: relative;
+    min-height: 520px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-top: 140px; /* space for topbar + overlay nav */
+    padding-bottom: 120px;
+    color: #ffffff;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.9),
+        rgba(15, 23, 42, 0.4)
+    );
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-kicker {
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #a5b4fc;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    max-width: 480px;
+    color: #e5e7eb;
+}
+
+/* Outline CTA button */
+.btn-hero-outline {
+    display: inline-block;
+    padding: 0.9rem 2.4rem;
+    border-radius: 0;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    background: transparent;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+}
+
+.btn-hero-outline:hover {
+    color: #111827;
+    background-color: #ffffff;
+}
+
+/* Hero slider arrows (visual only) */
+.hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #111827;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+    z-index: 2;
+}
+
+.hero-arrow-left {
+    left: 18px;
+}
+
+.hero-arrow-right {
+    right: 18px;
+}
+
+.hero-arrow i {
+    font-size: 0.9rem;
+}
+
+/* ---------------- FEATURED SECTION / CARDS ---------------- */
+
+.tracking-wide {
     letter-spacing: 0.08em;
+}
+
+/* Section styling */
+.featured-section {
+    background: radial-gradient(circle at top left, #ffffff 0, #f5f7fb 45%, #eef1f8 100%);
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #222;
+}
+
+/* Property cards */
+.property-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: #ffffff;
 }
 
 .property-card img {
     object-fit: cover;
     height: 220px;
+    transition: transform 0.35s ease;
 }
 
+.property-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
+}
+
+.property-card:hover img {
+    transform: scale(1.05);
+}
+
+.badge-status {
+    border-radius: 999px;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+}
+
+.favorite-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.favorite-btn:hover {
+    background-color: #f1f5f9;
+    transform: scale(1.05);
+}
+
+.favorite-btn i {
+    font-size: 0.9rem;
+    color: #fb7185;
+}
+
+.property-meta span i {
+    color: #64748b;
+}
+
+/* Legacy heading helper */
+.featured-heading {
+    letter-spacing: 0.08em;
+}
+
+/* ---------------- REVIEWS SECTION ---------------- */
+
+.reviews-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1d293b 40%, #d39500 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.reviews-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 60%);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.reviews-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Review cards */
 .review-card {
+    background: rgba(15, 23, 42, 0.85);
+    border-radius: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
+    text-align: left;
+    color: #e5e7eb;
     min-height: 220px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.45);
+    border-color: rgba(250, 204, 21, 0.6);
+}
+
+/* Rating stars */
+.rating-stars {
+    color: #facc15;
+    letter-spacing: 0.12em;
+}
+
+/* Carousel controls / indicators */
+#reviewSlider .carousel-control-prev-icon,
+#reviewSlider .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+#reviewSlider .carousel-control-prev,
+#reviewSlider .carousel-control-next {
+    width: 3rem;
+}
+
+#reviewSlider .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 0;
+}
+
+#reviewSlider .carousel-indicators .active {
+    background-color: #facc15;
+    width: 26px;
+}
+
+/* ================== JOB DETAIL PAGE ================== */
+
+.job-detail-page {
+    background: #f3f4f6;
+}
+
+/* hero card */
+.job-hero-card {
+    border-radius: 1.25rem;
+    background: radial-gradient(circle at top left, #ffffff 0, #eef2ff 40%, #e5e7eb 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.job-hero-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.14), transparent 55%);
+    pointer-events: none;
+}
+
+.job-hero-card .card-body {
+    position: relative;
+    z-index: 1;
+}
+
+.job-breadcrumb {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: #6b7280;
+}
+
+.job-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.job-meta-chips {
+    margin-top: 0.5rem;
+}
+
+.job-chip {
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.job-chip-location {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border-color: #bae6fd;
+}
+
+.job-chip-salary {
+    background-color: #ecfdf5;
+    color: #047857;
+    border-color: #bbf7d0;
+}
+
+.job-chip-type {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+}
+
+.job-posted {
+    margin-left: 0.5rem;
+}
+
+/* outline button reused from hero but slightly smaller */
+.job-apply-btn {
+    padding: 0.65rem 1.6rem;
+    border-radius: 999px;
+    border-width: 2px;
+}
+
+/* main description card */
+.job-content-card {
+    border-radius: 1rem;
+    background-color: #ffffff;
+}
+
+.job-content-card h2 {
+    font-weight: 600;
+    color: #111827;
+}
+
+.job-description-content p {
+    margin-bottom: 0.75rem;
+}
+
+/* sidebar cards */
+.job-sidebar-card {
+    border-radius: 1rem;
+    background-color: #ffffff;
+}
+
+.job-sidebar-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    border-bottom: 1px dashed #e5e7eb;
+}
+
+.job-sidebar-list li:last-child {
+    border-bottom: none;
+}
+
+.job-sidebar-list .label {
+    color: #6b7280;
+}
+
+.job-sidebar-list .value {
+    color: #111827;
+    font-weight: 600;
+}
+
+/* responsive tweaks */
+@media (max-width: 767.98px) {
+    .job-title {
+        font-size: 1.6rem;
+    }
+
+    .job-hero-card {
+        border-radius: 1rem;
+    }
+}
+
+/* ================== JOB LIST PAGE (ARCHIVE) ================== */
+
+.job-list-page {
+    background: #f3f4f6;
+}
+
+.job-list-hero {
+    border-radius: 1.25rem;
+    padding: 1.75rem 1.75rem;
+    background: radial-gradient(circle at top left, #111827 0, #1f2937 45%, #111827 100%);
+    color: #f9fafb;
+    margin-bottom: 2rem;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.45);
+}
+
+.job-list-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.job-list-subtitle {
+    font-size: 0.95rem;
+    color: #e5e7eb;
+}
+
+.jobs-count-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    background-color: #f9fafb;
+    color: #111827;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* job cards grid */
+
+.job-card {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+}
+
+.job-card-title a {
+    text-decoration: none;
+    color: #111827;
+}
+
+.job-card-title a:hover {
+    color: #1d4ed8;
+}
+
+.job-card-meta .job-chip {
+    font-size: 0.78rem;
+}
+
+.job-card-excerpt p:last-child {
+    margin-bottom: 0;
+}
+
+.job-card-footer {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.job-card-link {
+    font-weight: 600;
+    color: #1d4ed8;
+}
+
+.job-card-link:hover {
+    color: #1e40af;
+}
+
+/* pagination styling */
+
+.job-pagination .pagination {
+    justify-content: center;
+}
+
+.job-pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.3rem;
+    height: 2.3rem;
+    margin: 0 0.2rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+    text-decoration: none;
+    background-color: #ffffff;
+}
+
+.job-pagination .page-numbers.current {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border-color: #1d4ed8;
+}
+
+.job-pagination .page-numbers:hover {
+    border-color: #1d4ed8;
+    color: #1d4ed8;
 }
